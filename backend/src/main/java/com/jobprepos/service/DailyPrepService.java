@@ -26,7 +26,6 @@ public class DailyPrepService {
     private final DsaProblemRepository dsaProblemRepository;
     private final JobApplicationRepository jobApplicationRepository;
 
-    // Helper method to get or create demo user
     public UserEntity getOrCreateDemoUser() {
         return userRepository.findByCognitoSub("demo-user-123")
                 .orElseGet(() -> userRepository.save(UserEntity.builder()
@@ -55,7 +54,6 @@ public class DailyPrepService {
         int dsaCount = (int) dsaProblemRepository.count();
         int jobCount = (int) jobApplicationRepository.count();
 
-        // Current masterplan day calculation (1 to 60)
         long daysBetween = java.time.temporal.ChronoUnit.DAYS.between(user.getPrepStartDate(), today);
         int currentDay = Math.min(60, Math.max(1, (int) daysBetween + 1));
 
@@ -93,7 +91,6 @@ public class DailyPrepService {
         entity.setDayNumber(dto.getDayNumber() != null ? dto.getDayNumber() : entity.getDayNumber());
         entity.setCompletionStatus(dto.getCompletionStatus() != null ? dto.getCompletionStatus() : "PARTIAL");
         
-        // Sum up subject hours if total is null
         BigDecimal total = BigDecimal.ZERO;
         if (dto.getJavaHours() != null) { entity.setJavaHours(dto.getJavaHours()); total = total.add(dto.getJavaHours()); }
         if (dto.getDsaHours() != null) { entity.setDsaHours(dto.getDsaHours()); total = total.add(dto.getDsaHours()); }

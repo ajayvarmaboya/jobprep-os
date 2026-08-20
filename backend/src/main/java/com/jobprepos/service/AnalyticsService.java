@@ -26,7 +26,6 @@ public class AnalyticsService {
         List<DsaProblemEntity> dsaList = dsaProblemRepository.findByUserIdOrderBySolvedDateDesc(user.getId());
         List<JobApplicationEntity> appList = jobApplicationRepository.findByUserIdOrderByAppliedDateDesc(user.getId());
 
-        // DSA Analytics
         Map<String, Long> dsaByDifficulty = dsaList.stream()
                 .collect(Collectors.groupingBy(DsaProblemEntity::getDifficulty, Collectors.counting()));
 
@@ -40,13 +39,11 @@ public class AnalyticsService {
         long independentSolveCount = dsaList.stream().filter(DsaProblemEntity::getSolvedIndependently).count();
         double independentSolveRate = dsaList.isEmpty() ? 0.0 : Math.round((independentSolveCount / (double) dsaList.size()) * 1000.0) / 10.0;
 
-        // Weak pattern detection
         List<String> weakPatterns = dsaByPattern.entrySet().stream()
                 .filter(entry -> entry.getValue() < 2)
                 .map(Map.Entry::getKey)
                 .collect(Collectors.toList());
 
-        // Job Pipeline Conversion Analytics
         long totalApps = appList.size();
         long totalAssessments = appList.stream().filter(a -> Set.of("ASSESSMENT", "TECHNICAL_INTERVIEW", "HR", "OFFER").contains(a.getStatus())).count();
         long totalInterviews = appList.stream().filter(a -> Set.of("TECHNICAL_INTERVIEW", "HR", "OFFER").contains(a.getStatus())).count();

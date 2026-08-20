@@ -58,19 +58,15 @@ public class ApplicationService {
 
     @Transactional
     public String generatePresignedResumeUploadUrl(UUID appId, String fileName) {
-        // System design note: In AWS production, this invokes S3 Presigned URL generator using AWS SDK v2
-        // e.g. AmazonS3Presigner.generatePresignedUploadUrl(...)
         String s3Key = "resumes/user-demo-123/" + appId + "_" + fileName;
         JobApplicationEntity entity = jobApplicationRepository.findById(appId)
-                .orElseThrow(() -> new ResourceNotFoundException("Job Application not found with ID: " + idForError(appId)));
+                .orElseThrow(() -> new ResourceNotFoundException("Job Application not found"));
         
         entity.setResumeS3Key(s3Key);
         jobApplicationRepository.save(entity);
 
         return "https://jobprep-os-bucket.s3.amazonaws.com/" + s3Key + "?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Expires=900";
     }
-
-    private String idForError(UUID appId) { return appId != null ? appId.toString() : "null"; }
 
     private JobApplicationDto mapToDto(JobApplicationEntity entity) {
         return JobApplicationDto.builder()

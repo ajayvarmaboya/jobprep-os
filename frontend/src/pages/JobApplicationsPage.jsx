@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { api } from '../services/api';
-import { Briefcase, Plus, Upload, LayoutGrid, Table, CheckCircle2, TrendingUp } from 'lucide-react';
+import { Briefcase, Plus } from 'lucide-react';
 
 export const JobApplicationsPage = () => {
   const [apps, setApps] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [viewMode, setViewMode] = useState('kanban'); // 'kanban' | 'table'
+  const [viewMode, setViewMode] = useState('kanban');
   const [showModal, setShowModal] = useState(false);
 
   const [form, setForm] = useState({
@@ -38,7 +38,6 @@ export const JobApplicationsPage = () => {
 
   const statuses = ['APPLIED', 'ASSESSMENT', 'TECHNICAL_INTERVIEW', 'HR', 'OFFER', 'REJECTED'];
 
-  // Conversion rates calculation
   const totalApps = apps.length;
   const totalInterviews = apps.filter(a => ['TECHNICAL_INTERVIEW', 'HR', 'OFFER'].includes(a.status)).length;
   const totalOffers = apps.filter(a => a.status === 'OFFER').length;
@@ -48,7 +47,6 @@ export const JobApplicationsPage = () => {
 
   return (
     <div className="space-y-6 max-w-6xl mx-auto">
-      {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
         <div>
           <h1 className="text-2xl font-bold text-slate-900 flex items-center gap-2">
@@ -86,7 +84,6 @@ export const JobApplicationsPage = () => {
         </div>
       </div>
 
-      {/* Pipeline Metrics */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
           <span className="text-xs font-semibold text-slate-500 uppercase">Total Applications</span>
@@ -109,7 +106,6 @@ export const JobApplicationsPage = () => {
         </div>
       </div>
 
-      {/* Kanban Pipeline View */}
       {viewMode === 'kanban' ? (
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-3 overflow-x-auto pb-4">
           {statuses.map(st => {
@@ -143,7 +139,6 @@ export const JobApplicationsPage = () => {
           })}
         </div>
       ) : (
-        /* Table View */
         <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
           <table className="w-full text-left text-sm text-slate-700">
             <thead className="bg-slate-50 text-slate-500 uppercase text-xs font-semibold border-b border-slate-100">
@@ -176,7 +171,6 @@ export const JobApplicationsPage = () => {
         </div>
       )}
 
-      {/* Modal */}
       {showModal && (
         <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 z-50">
           <div className="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl space-y-4">

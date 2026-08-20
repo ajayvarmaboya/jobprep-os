@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { api } from '../services/api';
-import { BookOpen, CheckCircle, Clock, AlertTriangle, ChevronDown, ChevronRight, Sparkles } from 'lucide-react';
+import { BookOpen, CheckCircle, Clock, AlertTriangle, ChevronDown, ChevronRight } from 'lucide-react';
 
 export const LearningProgressPage = () => {
   const [tree, setTree] = useState({});
@@ -44,7 +44,6 @@ export const LearningProgressPage = () => {
 
   return (
     <div className="space-y-6 max-w-5xl mx-auto">
-      {/* Header */}
       <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
         <h1 className="text-2xl font-bold text-slate-900 flex items-center gap-2">
           <BookOpen className="w-6 h-6 text-indigo-600" />
@@ -55,7 +54,6 @@ export const LearningProgressPage = () => {
         </p>
       </div>
 
-      {/* Tech Stack Cards */}
       <div className="space-y-4">
         {Object.entries(tree).map(([tech, topics]) => {
           const completed = topics.filter(t => t.status === 'COMPLETED').length;
@@ -65,7 +63,6 @@ export const LearningProgressPage = () => {
 
           return (
             <div key={tech} className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
-              {/* Header Accordion Bar */}
               <div
                 onClick={() => toggleExpand(tech)}
                 className="p-5 flex items-center justify-between cursor-pointer hover:bg-slate-50 transition border-b border-slate-100"
@@ -92,7 +89,6 @@ export const LearningProgressPage = () => {
                 </div>
               </div>
 
-              {/* Topics List */}
               {isExpanded && (
                 <div className="p-4 bg-slate-50/50 space-y-2">
                   {topics.map((item) => (

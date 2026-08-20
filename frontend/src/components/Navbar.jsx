@@ -61,7 +61,6 @@ export const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile nav bar */}
       <div className="md:hidden flex overflow-x-auto border-t border-slate-800 px-2 py-2 space-x-1">
         {navItems.map((item) => {
           const Icon = item.icon;

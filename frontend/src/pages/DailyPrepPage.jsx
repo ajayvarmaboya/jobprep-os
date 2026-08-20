@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { api } from '../services/api';
-import { Calendar, Clock, Save, CheckCircle2, AlertCircle, BookOpen } from 'lucide-react';
+import { Calendar, Clock, Save, CheckCircle2 } from 'lucide-react';
 
 export const DailyPrepPage = () => {
   const [selectedDay, setSelectedDay] = useState(20);
@@ -49,7 +49,6 @@ export const DailyPrepPage = () => {
 
   return (
     <div className="max-w-5xl mx-auto space-y-6">
-      {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
         <div>
           <h1 className="text-2xl font-bold text-slate-900 flex items-center gap-2">
@@ -78,14 +77,13 @@ export const DailyPrepPage = () => {
       </div>
 
       {savedSuccess && (
-        <div className="bg-emerald-50 border border-emerald-300 text-emerald-800 px-4 py-3 rounded-xl text-sm flex items-center gap-2 animate-fade-in">
+        <div className="bg-emerald-50 border border-emerald-300 text-emerald-800 px-4 py-3 rounded-xl text-sm flex items-center gap-2">
           <CheckCircle2 className="w-5 h-5 text-emerald-600" />
           <span>Successfully synchronized Day {selectedDay} preparation data to JobPrep OS Cloud DB!</span>
         </div>
       )}
 
       <form onSubmit={handleSave} className="space-y-6">
-        {/* Status Selection */}
         <div className="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 space-y-4">
           <h3 className="text-lg font-bold text-slate-900">Completion Status for Day {selectedDay}</h3>
           <div className="grid grid-cols-3 gap-3">
@@ -127,7 +125,6 @@ export const DailyPrepPage = () => {
           </div>
         </div>
 
-        {/* Study Hours Breakdown */}
         <div className="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 space-y-4">
           <div className="flex items-center justify-between border-b border-slate-100 pb-3">
             <h3 className="text-lg font-bold text-slate-900 flex items-center gap-2">
@@ -209,7 +206,6 @@ export const DailyPrepPage = () => {
           </div>
         </div>
 
-        {/* Job Applications Count & Reflection */}
         <div className="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 space-y-4">
           <h3 className="text-lg font-bold text-slate-900">Job Search & Daily Reflections</h3>
 

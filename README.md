@@ -62,7 +62,6 @@ Built specifically to showcase **SDE-1 / Software Engineering depth** for top pr
 ### Prerequisites
 * **Java 17+** (OpenJDK / Oracle JDK)
 * **Node.js 18+** & **npm**
-* Maven 3.8+ (optional, Maven Wrapper included)
 
 ### 1. Run Backend (Spring Boot)
 ```bash
@@ -79,42 +78,6 @@ npm install
 npm run dev
 ```
 * Frontend runs at `http://localhost:3000` (proxied automatically to port 8080)
-
----
-
-## 📊 Database Schema (PostgreSQL DDL)
-
-```sql
-CREATE TABLE users (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    cognito_sub VARCHAR(255) NOT NULL UNIQUE,
-    email VARCHAR(255) NOT NULL UNIQUE,
-    full_name VARCHAR(100),
-    target_role VARCHAR(100) DEFAULT 'Software Development Engineer',
-    prep_start_date DATE NOT NULL DEFAULT CURRENT_DATE,
-    current_streak INT DEFAULT 0
-);
-
-CREATE TABLE daily_logs (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    user_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
-    log_date DATE NOT NULL,
-    day_number INT NOT NULL CHECK (day_number BETWEEN 1 AND 60),
-    completion_status VARCHAR(20) NOT NULL,
-    total_study_hours NUMERIC(4,2) DEFAULT 0.0,
-    CONSTRAINT idx_user_daily_date UNIQUE(user_id, log_date)
-);
-
-CREATE TABLE dsa_problems (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    user_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
-    problem_title VARCHAR(255) NOT NULL,
-    difficulty VARCHAR(20) NOT NULL,
-    pattern VARCHAR(100) NOT NULL,
-    time_taken_minutes INT DEFAULT 0
-);
-CREATE INDEX idx_dsa_user_pattern ON dsa_problems(user_id, pattern);
-```
 
 ---
 

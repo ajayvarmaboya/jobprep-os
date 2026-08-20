@@ -36,7 +36,6 @@ export const DashboardPage = () => {
 
   return (
     <div className="space-y-6">
-      {/* Header Banner */}
       <div className="bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 rounded-2xl p-6 sm:p-8 text-white shadow-xl border border-indigo-900/50 relative overflow-hidden">
         <div className="absolute top-0 right-0 transform translate-x-8 -translate-y-8 w-64 h-64 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none"></div>
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 relative z-10">
@@ -81,7 +80,6 @@ export const DashboardPage = () => {
         )}
       </div>
 
-      {/* KPI Cards */}
       <div className="grid grid-cols-2 lg:grid-cols-5 gap-4">
         <div className="bg-white p-5 rounded-xl shadow-sm border border-slate-200 hover:shadow-md transition">
           <div className="flex items-center justify-between text-slate-500 mb-2">
@@ -129,9 +127,7 @@ export const DashboardPage = () => {
         </div>
       </div>
 
-      {/* Main Grid: Today's Schedule + Focus Areas */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Today's Schedule Widget */}
         <div className="lg:col-span-2 bg-white rounded-2xl shadow-sm border border-slate-200 p-6 space-y-6">
           <div className="flex items-center justify-between border-b border-slate-100 pb-4">
             <div>
@@ -173,7 +169,6 @@ export const DashboardPage = () => {
           </div>
         </div>
 
-        {/* Quick Actions & Navigation */}
         <div className="space-y-6">
           <div className="bg-gradient-to-br from-indigo-600 to-purple-700 rounded-2xl p-6 text-white shadow-lg">
             <h3 className="text-lg font-bold mb-2 flex items-center gap-2">

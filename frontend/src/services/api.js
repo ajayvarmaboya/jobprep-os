@@ -1,6 +1,5 @@
 const BASE_URL = '/api/v1';
 
-// Local storage fallback helpers
 const getLocal = (key, defaultVal) => {
   try {
     const val = localStorage.getItem(key);
@@ -19,7 +18,6 @@ const setLocal = (key, val) => {
 };
 
 export const api = {
-  // Dashboard & Daily Prep
   async getDashboardSummary() {
     try {
       const res = await fetch(`${BASE_URL}/daily/dashboard`);
@@ -81,7 +79,6 @@ export const api = {
     return logData;
   },
 
-  // DSA Problems
   async getDsaProblems(filters = {}) {
     try {
       const query = new URLSearchParams(filters).toString();
@@ -119,7 +116,6 @@ export const api = {
     return newProb;
   },
 
-  // Learning Progress
   async getLearningTree() {
     try {
       const res = await fetch(`${BASE_URL}/learning`);
@@ -179,7 +175,6 @@ export const api = {
     return { techName, topicName, status };
   },
 
-  // Job Applications
   async getApplications() {
     try {
       const res = await fetch(`${BASE_URL}/applications`);
@@ -215,7 +210,6 @@ export const api = {
     return newApp;
   },
 
-  // Analytics & AI Coach
   async getAnalyticsSummary() {
     try {
       const res = await fetch(`${BASE_URL}/analytics/summary`);

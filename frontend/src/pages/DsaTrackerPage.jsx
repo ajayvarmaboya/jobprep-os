@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { api } from '../services/api';
-import { Code2, Plus, AlertTriangle, CheckCircle2, Filter, Search } from 'lucide-react';
+import { Code2, Plus, AlertTriangle } from 'lucide-react';
 
 export const DsaTrackerPage = () => {
   const [problems, setProblems] = useState([]);
@@ -55,7 +55,6 @@ export const DsaTrackerPage = () => {
 
   const filteredProblems = problems.filter(p => patternFilter === 'ALL' || p.pattern === patternFilter);
 
-  // Pattern Analytics calculation
   const patternCounts = {};
   patternsList.forEach(p => { patternCounts[p] = 0; });
   problems.forEach(p => {
@@ -68,7 +67,6 @@ export const DsaTrackerPage = () => {
 
   return (
     <div className="space-y-6 max-w-6xl mx-auto">
-      {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
         <div>
           <h1 className="text-2xl font-bold text-slate-900 flex items-center gap-2">
@@ -89,7 +87,6 @@ export const DsaTrackerPage = () => {
         </button>
       </div>
 
-      {/* Weak Area Detection Alert */}
       {weakPatterns.length > 0 && (
         <div className="bg-amber-50 border border-amber-300 rounded-2xl p-4 flex items-start gap-3">
           <AlertTriangle className="w-5 h-5 text-amber-600 mt-0.5 shrink-0" />
@@ -102,7 +99,6 @@ export const DsaTrackerPage = () => {
         </div>
       )}
 
-      {/* Pattern Analytics Grid */}
       <div className="bg-white rounded-2xl p-5 shadow-sm border border-slate-200 space-y-3">
         <h3 className="text-xs font-bold text-slate-500 uppercase tracking-wider">Activity Breakdown by Pattern</h3>
         <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-2">
@@ -129,7 +125,6 @@ export const DsaTrackerPage = () => {
         </div>
       </div>
 
-      {/* Data Table */}
       <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
         <div className="p-4 border-b border-slate-100 flex items-center justify-between">
           <span className="text-sm font-bold text-slate-800">
@@ -180,7 +175,6 @@ export const DsaTrackerPage = () => {
         </div>
       </div>
 
-      {/* Modal */}
       {showModal && (
         <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 z-50">
           <div className="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl space-y-4">
