@@ -1,0 +1,26 @@
+# Node.js
+node_modules/
+dist/
+dist-ssr/
+*.local
+
+# Maven & Java
+target/
+*.class
+.mvn/
+*.jar
+*.war
+
+# IDE & Editor
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Logs
+*.log
+
+# H2 Database
+*.mv.db
+*.trace.db
